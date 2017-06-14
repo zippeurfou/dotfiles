@@ -110,8 +110,8 @@ if has("autocmd")
 				" Treat .md files as Markdown
 				autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 				autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
-				autocmd Filetype r let b:vcm_omni_pattern='\k\+\(::\|\$\|@\)\k*$'
-				autocmd FileType r let b:vcm_tab_complete = "omni"
+				autocmd Filetype r,rmd let [ b:vcm_omni_pattern,b:vcm_tab_complete ] = ['\k\+\(::\|\$\|@\)\k*$','omni']
+				autocmd FileType rmd  noremap <Leader>md :!Rscript -e "rmarkdown::render('%')"<cr>
 endif
 " pathogen plugin
 "execute pathogen#infect()
@@ -194,7 +194,10 @@ Plug 'othree/csscomplete.vim'
 Plug 'jalvesaq/Nvim-R'
 " better match with %
 Plug 'https://github.com/adelarsq/vim-matchit'
-
+" better rmarkdown syntax highlight
+Plug 'vim-pandoc/vim-pandoc-syntax'
+" runtime for r
+Plug 'jalvesaq/R-Vim-runtime'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 "ignore files in NERDTree
@@ -326,6 +329,11 @@ let g:R_commented_lines = 1
 let g:R_listmethods = 1
 let g:R_specialplot = 1
 let g:R_show_args = 1
+let g:R_tmux_split = 1
+let g:R_hi_fun = 1
+" let g:r_syntax_fun_pattern = 1
+let R_hi_fun_paren = 0
+
 " TODO set key binding and uncomment this:
 "     let g:R_user_maps_only = 1
 " showing menu for sneak
