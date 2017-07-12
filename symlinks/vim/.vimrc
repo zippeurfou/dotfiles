@@ -30,7 +30,7 @@ set noeol
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-				set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
 endif
 
 " Don’t create backups when editing files in certain directories
@@ -47,15 +47,20 @@ set number
 " Enable syntax highlighting
 syntax on
 if !exists("g:syntax_on")
-				syntax enable
+  syntax enable
 endif
 " Highlight current line
 set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
+" indentation with >
+set shiftwidth=2
+set softtabstop=2
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
+" Use space instead of tabs
+set expandtab
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -82,19 +87,19 @@ set title
 set showcmd
 " Use relative line numbers
 if exists("&relativenumber")
-				set relativenumber
-				au BufReadPost * set relativenumber
+  set relativenumber
+  au BufReadPost * set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
-				let save_cursor = getpos(".")
-				let old_query = getreg('/')
-				:%s/\s\+$//e
-				call setpos('.', save_cursor)
-				call setreg('/', old_query)
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  :%s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
@@ -102,25 +107,25 @@ noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 " Automatic commands
 if has("autocmd")
-				" Enable file type detection
-				filetype on
-				" Treat .json files as .js
-				" autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-				autocmd FileType javascript setlocal omnifunc=tern#Complete
-				" Treat .md files as Markdown
-				autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-				autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
-				autocmd Filetype r,rmd let [ b:vcm_omni_pattern,b:vcm_tab_complete ] = ['\k\+\(::\|\$\|@\)\k*$','omni']
-				autocmd FileType rmd  noremap <Leader>md :!Rscript -e "rmarkdown::render('%')"<cr>
+  " Enable file type detection
+  filetype on
+  " Treat .json files as .js
+  " autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  " Treat .md files as Markdown
+  autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+  autocmd Filetype r,rmd let [ b:vcm_omni_pattern,b:vcm_tab_complete ] = ['\k\+\(::\|\$\|@\)\k*$','omni']
+  autocmd FileType rmd  noremap <Leader>md :!Rscript -e "rmarkdown::render('%')"<cr>
 endif
 " pathogen plugin
 "execute pathogen#infect()
 "filetype plugin indent on
 "Install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
-				silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-																\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-				autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -167,9 +172,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 " highlight bad whitespace
 Plug 'ntpeters/vim-better-whitespace'
+" indent leading spaces
+" Plug 'thaerkh/vim-indentguides'
 " cpp completion
 if executable('clang')
-	Plug 'rip-rip/clang_complete'
+  Plug 'rip-rip/clang_complete'
 endif
 "javascript better highlight
 "Plug 'pangloss/vim-javascript'
@@ -185,17 +192,19 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Java completion
 " Plug 'artur-shaik/vim-javacomplete2', PlugIf(executable('mvn'), {
-        " \   'do': 'cd libs/javavi/ && mvn compile',
-        " \   'for': 'java',
-        " \ })
+" \   'do': 'cd libs/javavi/ && mvn compile',
+" \   'for': 'java',
+" \ })
 " css omni completion
 Plug 'othree/csscomplete.vim'
 " r integration
 Plug 'jalvesaq/Nvim-R'
 " better match with %
-Plug 'https://github.com/adelarsq/vim-matchit'
+Plug 'adelarsq/vim-matchit'
 " better rmarkdown syntax highlight
 Plug 'vim-pandoc/vim-pandoc-syntax'
+" better python syntax
+" Plug 'vim-python/python-syntax'
 " runtime for r
 Plug 'jalvesaq/R-Vim-runtime'
 " List ends here. Plugins become visible to Vim after this call.
@@ -250,8 +259,8 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 map <Leader>vz :call VimuxZoomRunner()<CR>
 
 function! VimuxSlime()
-				call VimuxSendText(@v)
-				call VimuxSendKeys("Enter")
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
 endfunction
 
 " If text is selected, save it in the v buffer and send that buffer it to tmux
@@ -272,13 +281,13 @@ let g:SimpylFold_docstring_preview=1
 "set statusline+=%{gutentags#statusline()} " commented because it delete the rest
 " tagbar additional mapping
 let g:tagbar_type_r = {
-												\ 'ctagstype' : 'r',
-												\ 'kinds'     : [
-												\ 'f:functions',
-												\ 'g:globalvariables',
-												\ 'v:functionvariables',
-												\ ]
-												\ }
+      \ 'ctagstype' : 'r',
+      \ 'kinds'     : [
+      \ 'f:functions',
+      \ 'g:globalvariables',
+      \ 'v:functionvariables',
+      \ ]
+      \ }
 " Using griprep instead of ag because faster
 " source: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 " --column: Show column number
@@ -317,6 +326,8 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_javascript_eslint_exec='/usr/local/bin/eslint'
 let g:syntastic_aggregate_errors = 1
+" Disable it by default to enable it do :SyntasticToggleMode
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " let g:syntastic_debug = 3
 " clang path
 let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
@@ -329,10 +340,18 @@ let g:R_commented_lines = 1
 let g:R_listmethods = 1
 let g:R_specialplot = 1
 let g:R_show_args = 1
+let g:R_show_arg_help = 1
 let g:R_tmux_split = 1
 let g:R_hi_fun = 1
+let g:R_nvim_wd = 1
+" disable polygot syntax for python
+" let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = ['json']
+
+" python syntax
+" let g:python_highlight_all = 1
 " let g:r_syntax_fun_pattern = 1
-let R_hi_fun_paren = 0
+" let R_hi_fun_paren = 1
 
 " TODO set key binding and uncomment this:
 "     let g:R_user_maps_only = 1
