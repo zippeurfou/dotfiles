@@ -163,7 +163,8 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " syntax checking
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'nvie/vim-flake8'
 " nerdTree TODO check if i really want it
 Plug 'scrooloose/nerdtree'
@@ -207,6 +208,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " Plug 'vim-python/python-syntax'
 " runtime for r
 Plug 'jalvesaq/R-Vim-runtime'
+" auto format
+Plug 'Chiel92/vim-autoformat'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 "ignore files in NERDTree
@@ -273,8 +276,6 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-" Enable folding with the spacebar
-"nnoremap <space> za
 " show docstring for the fold plugin
 let g:SimpylFold_docstring_preview=1
 "add gutentag status
@@ -319,16 +320,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline_skip_empty_sections = 1
 " syntetic js stuff
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_javascript_eslint_exec='/usr/local/bin/eslint'
-let g:syntastic_aggregate_errors = 1
+" let g:syntastic_javascript_checkers = ["eslint"]
+" let g:syntastic_javascript_eslint_exec='/usr/local/bin/eslint'
+" let g:syntastic_aggregate_errors = 1
 " Disable it by default to enable it do :SyntasticToggleMode
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-" let g:syntastic_debug = 3
+" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 " clang path
 let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
 " let g:tern_show_argument_hints = 'on_hold'
@@ -347,6 +343,21 @@ let g:R_nvim_wd = 1
 " disable polygot syntax for python
 " let g:polyglot_disabled = ['python']
 let g:polyglot_disabled = ['json']
+"ale syntax check only call when :ALELint
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:airline#extensions#ale#enabled = 1
+  let g:ale_fixers = {
+  \   'javascript': [
+  \       'eslint'
+  \   ],
+  \}
+
+"auto format stuff
+let g:formatter_yapf_style = 'pep8'
+
+
 
 " python syntax
 " let g:python_highlight_all = 1
