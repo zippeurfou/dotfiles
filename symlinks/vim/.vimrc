@@ -173,6 +173,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 " highlight bad whitespace
 Plug 'ntpeters/vim-better-whitespace'
+" ipython vimux
+Plug 'julienr/vim-cellmode', { 'for': ['python'] }
 " indent leading spaces
 " Plug 'thaerkh/vim-indentguides'
 " cpp completion
@@ -261,9 +263,26 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 " Zoom the runner pane (use <bind-key> z to restore runner pane)
 map <Leader>vz :call VimuxZoomRunner()<CR>
 
+" function! VimuxSlime()
+"   call VimuxSendText(@v)
+"   call VimuxSendKeys("Enter")
+" endfunction
+
 function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
+  " Automatically register a tmux pane.
+  if !exists("g:VimuxRunnerIndex")
+    call VimuxOpenRunner()
+  endif
+  if &filetype=="python"
+    silent call VimuxSendText("%cpaste\n")
+    :sleep 200m
+    silent call VimuxSendText(@v)
+    :sleep 200m
+    silent call VimuxSendText("\n--\n")
+  else
+    call VimuxSendText(@v)
+    call VimuxSendKeys("Enter")
+  endif
 endfunction
 
 " If text is selected, save it in the v buffer and send that buffer it to tmux
@@ -271,6 +290,7 @@ vmap <Leader>vs "vy :call VimuxSlime()<CR>
 
 " Select current paragraph and send it to tmux
 nmap <Leader>vs vip<Leader>vs<CR>
+
 " source file
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 " Enable folding
@@ -348,11 +368,11 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 0
 let g:airline#extensions#ale#enabled = 1
-  let g:ale_fixers = {
-  \   'javascript': [
-  \       'eslint'
-  \   ],
-  \}
+let g:ale_fixers = {
+      \   'javascript': [
+      \       'eslint'
+      \   ],
+      \}
 
 "auto format stuff
 let g:formatter_yapf_style = 'pep8'
@@ -363,6 +383,9 @@ let g:formatter_yapf_style = 'pep8'
 " let g:python_highlight_all = 1
 " let g:r_syntax_fun_pattern = 1
 " let R_hi_fun_paren = 1
+let g:cellmode_use_tmux=1
+let g:cellmode_tmux_sessionname=''
+let g:cellmode_tmux_panenumber=1
 
 " TODO set key binding and uncomment this:
 "     let g:R_user_maps_only = 1
