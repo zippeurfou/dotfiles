@@ -372,6 +372,9 @@ let g:ale_fixers = {
       \   'javascript': [
       \       'eslint'
       \   ],
+      \  'python': [
+      \       'autopep8'
+      \   ]
       \}
 
 "auto format stuff
