@@ -82,4 +82,9 @@ export PATH="/usr/local/opt/qt/bin:$PATH"
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
+#rstudio pandoc
+export RSTUDIO_PANDOC=/Applications/RStudio.app/Contents/MacOS/pandoc
 
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+source ~/.google-cloud-sdk/path.bash.inc

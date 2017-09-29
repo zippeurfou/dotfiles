@@ -117,6 +117,8 @@ if has("autocmd")
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
   autocmd Filetype r,rmd let [ b:vcm_omni_pattern,b:vcm_tab_complete ] = ['\k\+\(::\|\$\|@\)\k*$','omni']
   autocmd FileType rmd  noremap <Leader>md :!Rscript -e "rmarkdown::render('%')"<cr>
+  autocmd FileType r,rmd setlocal commentstring=#\ %s
+
 endif
 " pathogen plugin
 "execute pathogen#infect()
@@ -175,6 +177,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'ntpeters/vim-better-whitespace'
 " ipython vimux
 Plug 'julienr/vim-cellmode', { 'for': ['python'] }
+Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 " indent leading spaces
 " Plug 'thaerkh/vim-indentguides'
 " cpp completion
@@ -389,6 +392,10 @@ let g:formatter_yapf_style = 'pep8'
 let g:cellmode_use_tmux=1
 let g:cellmode_tmux_sessionname=''
 let g:cellmode_tmux_panenumber=1
+
+"vim jedi
+" do not pop on dot automatically
+let g:jedi#popup_on_dot = 0
 
 " TODO set key binding and uncomment this:
 "     let g:R_user_maps_only = 1

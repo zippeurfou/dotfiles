@@ -206,6 +206,11 @@
 [ghi]
 	token = !security find-internet-password -a zippeurfou -s github.com -l 'ghi token' -w
 [commit]
-	gpgsign = true
+	gpgsign = false
 [gpg]
-	program = /usr/local/MacGPG2/bin/gpg2
+	program = /usr/local/bin/gpg
+[credential]
+	helper = osxkeychain
+[user]
+	email = marc.ferradou@buzzfeed.com
+	name = Marc Ferradou

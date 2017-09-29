@@ -12,7 +12,8 @@ endif
 let g:colors_name = "railscasts"
 
 hi Normal                    guifg=#e4e4e4 guibg=#121212 ctermfg=254 ctermbg=233
-hi Search                    guifg=#000000 guibg=#5f5f87 ctermfg=0 ctermbg=60 cterm=NONE
+"hi Search                    guifg=#000000 guibg=#5f5f87 ctermfg=0 ctermbg=08 cterm=NONE
+hi Search                    guifg=#000000 guibg=#5f5f87 ctermfg=3 ctermbg=136=NONE
 hi Visual                    guibg=#5f5f87 ctermbg=60
 hi LineNr                    guifg=#666666 ctermfg=242
 hi Cursor                    guifg=#000000 guibg=#FFFFFF ctermfg=0 ctermbg=15
