@@ -147,3 +147,13 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+#
+#tmux stuff
+alias tn="tmux new -s"
+alias tk="tmux kill-server"
+alias ta="tmux attach -t"
+alias tl="tmux ls"
+
+#
+#rstudio
+alias rstudio="open -a RStudio ."

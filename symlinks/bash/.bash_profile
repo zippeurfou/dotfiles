@@ -63,8 +63,6 @@ export PATH="$CUDA_HOME/bin:$PATH"
 #hub
 eval "$(hub alias -s)"
 
-#rstudio
-alias rstudio="open -a RStudio ."
 
 #rabbit
 PATH=$PATH:/usr/local/sbin
