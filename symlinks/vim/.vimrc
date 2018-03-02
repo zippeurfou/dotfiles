@@ -365,7 +365,7 @@ let g:R_hi_fun = 1
 let g:R_nvim_wd = 1
 " disable polygot syntax for python
 " let g:polyglot_disabled = ['python']
-let g:polyglot_disabled = ['json']
+" let g:polyglot_disabled = ['json']
 "ale syntax check only call when :ALELint
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
