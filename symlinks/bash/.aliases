@@ -149,10 +149,11 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias reload="exec $SHELL -l"
 #
 #tmux stuff
-alias tn="tmux new -s"
-alias tk="tmux kill-server"
+# alias tn="tmux new -s" #now a function
+alias tkk="tmux kill-server" #adding a second k because I kept messing up with tl xD
 alias ta="tmux attach -t"
 alias tl="tmux ls"
+alias tq="tmux kill-session -t"
 
 #
 #rstudio

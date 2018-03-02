@@ -244,3 +244,19 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+
+#Create a new tmux session nicely like I like
+function tn() { tmux new-session -s "$1"\; split-window -v 'ipython3'\; resize-pane -D 20\; select-pane -U; };
+#timestamp converter
+function tsms() {  date -r $(($1 / 1000)) +'%Y-%m-%d %H:%M:%S'; }
+function tss() {  date -r $1 +'%Y-%m-%d %H:%M:%S'; }
+
+#aws help
+function s3read(){ aws s3 cp "$1" - | gzip -d | vim -;}
+function s3ls(){ aws s3 ls "$1"; }
+function emrls(){ aws emr describe-cluster --cluster-id "$1" | vim -c 'set syntax=json|:call StripWhitespace()' -;}
+function emrstepls(){ aws emr describe-step --cluster-id "$1" --step-id "$2" | vim -c 'set syntax=json|:call StripWhitespace()' -;}
+
+
+
