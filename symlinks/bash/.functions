@@ -247,7 +247,8 @@ function tre() {
 
 
 #Create a new tmux session nicely like I like
-function tn() { tmux new-session -s "$1"\; split-window -v 'ipython3'\; resize-pane -D 20\; select-pane -U; };
+function tn() {  tmux new-session -s "$1"\; split-pane -v \; send-keys -t "$1":0 'vpython2' Enter \; resize-pane -D 20\; select-pane -U; };
+function tn3() {  tmux new-session -s "$1"\; split-pane -v \; send-keys -t "$1":0 'vpython3' Enter \; resize-pane -D 20\; select-pane -U; };
 #timestamp converter
 function tsms() {  date -r $(($1 / 1000)) +'%Y-%m-%d %H:%M:%S'; }
 function tss() {  date -r $1 +'%Y-%m-%d %H:%M:%S'; }

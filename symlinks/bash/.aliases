@@ -158,3 +158,14 @@ alias tq="tmux kill-session -t"
 #
 #rstudio
 alias rstudio="open -a RStudio ."
+
+#ipython with vi navigation
+alias vpython3="ipython3 --TerminalInteractiveShell.editing_mode=vi"
+alias vpython2="ipython2 --TerminalInteractiveShell.editing_mode=vi"
+
+#gcloud aliases
+alias vmls='gcloud compute instances list --project="ml-model-workflow-dev"'
+alias vmstop='gcloud compute instances stop pytorch-test-vm --project="ml-model-workflow-dev" --zone="us-west1-b"'
+alias vmstart='gcloud compute instances start pytorch-test-vm --project="ml-model-workflow-dev" --zone="us-west1-b" && gcloud compute ssh --project ml-model-workflow-dev --zone us-west1-b pytorch-test-vm -- -L 8080:localhost:8080'
+alias vmssh='gcloud compute ssh --project ml-model-workflow-dev --zone us-west1-b pytorch-test-vm -- -L 8080:localhost:8080'
+alias vmtb='echo "Please type this once connected: tensorboard --logdir=/home/jupyter/model_dir/ --port=8081 --host=localhost"  && gcloud compute ssh --project ml-model-workflow-dev --zone us-west1-b pytorch-test-vm -- -L 8081:localhost:8081'

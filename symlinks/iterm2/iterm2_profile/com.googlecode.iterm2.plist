@@ -153,8 +153,10 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/.cider/symlinks/iterm2/iterm2_profile</string>
+	<string>~/Documents</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{712, 448}</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
@@ -194,9 +196,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-2291 -378 606 469 -2560 -540 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1823 381 796 473 -2560 -540 2560 1440 </string>
+	<string>-1823 377 958 451 -2560 -540 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>733 326 665 551 0 0 1440 877 </string>
+	<string>-1855 -214 665 551 -2560 -540 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>-2560 -536 2560 1436 -2560 -540 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -1509,6 +1511,8 @@
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>523291376.133053</real>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1553,7 +1557,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-03-01T19:27:24Z</date>
+	<date>2018-10-24T14:32:50Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1579,7 +1583,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5</string>
+	<string>3.2.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

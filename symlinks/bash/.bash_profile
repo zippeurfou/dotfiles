@@ -84,5 +84,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export RSTUDIO_PANDOC=/Applications/RStudio.app/Contents/MacOS/pandoc
 
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
+export PATH="/usr/local/opt/python@2/bin:$PATH"
 source ~/.google-cloud-sdk/path.bash.inc
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
+

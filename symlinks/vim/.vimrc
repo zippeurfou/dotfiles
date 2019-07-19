@@ -114,6 +114,7 @@ if has("autocmd")
   autocmd FileType javascript setlocal omnifunc=tern#Complete
   " Treat .md files as Markdown
   autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+  autocmd BufNewFile,BufRead *.ipynb setlocal filetype=python
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
   autocmd Filetype r,rmd let [ b:vcm_omni_pattern,b:vcm_tab_complete ] = ['\k\+\(::\|\$\|@\)\k*$','omni']
   autocmd FileType rmd  noremap <Leader>md :!Rscript -e "rmarkdown::render('%')"<cr>
@@ -178,6 +179,8 @@ Plug 'ntpeters/vim-better-whitespace'
 " ipython vimux
 Plug 'julienr/vim-cellmode', { 'for': ['python'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+" slack
+Plug 'yaasita/edit-slack.vim'
 " indent leading spaces
 " Plug 'thaerkh/vim-indentguides'
 " cpp completion
@@ -215,6 +218,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'jalvesaq/R-Vim-runtime'
 " auto format
 Plug 'Chiel92/vim-autoformat'
+" read ipynb
+Plug 'goerz/ipynb_notedown.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 "ignore files in NERDTree
@@ -291,11 +296,21 @@ endfunction
 " If text is selected, save it in the v buffer and send that buffer it to tmux
 vmap <Leader>vs "vy :call VimuxSlime()<CR>
 
+
 " Select current paragraph and send it to tmux
 nmap <Leader>vs vip<Leader>vs<CR>
 
 " source file
 nnoremap <Leader>sv :source $MYVIMRC<cr>
+" buffer nav
+nnoremap gb :ls<cr>:buffer<space>
+" Adding conf for vimrc nav
+tmap <C-h> <C-w>h
+tmap <C-j> <C-w>j
+tmap <C-k> <C-w>k
+tmap <C-l> <C-w>l
+tmap <Leader><Esc> <C-\><C-n>
+
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -360,9 +375,18 @@ let g:R_listmethods = 1
 let g:R_specialplot = 1
 let g:R_show_args = 1
 let g:R_show_arg_help = 1
-let g:R_tmux_split = 1
+" let g:R_tmux_split = 1
 let g:R_hi_fun = 1
 let g:R_nvim_wd = 1
+let g:R_rconsole_width = 0
+let g:R_rconsole_height = 25
+" R output is highlighted with current colorscheme
+let g:rout_follow_colorscheme = 1
+" R commands in R output are highlighted
+let g:Rout_more_colors = 1
+
+
+
 " disable polygot syntax for python
 " let g:polyglot_disabled = ['python']
 " let g:polyglot_disabled = ['json']
@@ -382,7 +406,7 @@ let g:ale_fixers = {
 
 "auto format stuff
 let g:formatter_yapf_style = 'pep8'
-
+let g:ale_python_autopep8_options ='--ignore=E501'
 
 
 " python syntax
@@ -392,6 +416,9 @@ let g:formatter_yapf_style = 'pep8'
 let g:cellmode_use_tmux=1
 let g:cellmode_tmux_sessionname=''
 let g:cellmode_tmux_panenumber=1
+
+" vim slack
+let g:yaasita_slack_token = "xoxp-2151144447-220921695382-264095373058-93ad64163dc78d7e6bb9da7ffced607e"
 
 "vim jedi
 " do not pop on dot automatically
